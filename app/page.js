@@ -76,7 +76,7 @@ export default function Home() {
           name="description"
           placeholder="Enter Description"
           cols="30"
-          rows="10"
+          rows="4"
           className="px-3 py-2 border-2 w-full bg-slate-100"
           value={formData.description}
           onChange={onChangeHandler}
@@ -84,7 +84,6 @@ export default function Home() {
         <button
           type="submit"
           className="bg-green-500 rounded-lg px-10 py-3 text-white"
-          // onClick={onChangeHandler}
         >
           Add Todo
         </button>
