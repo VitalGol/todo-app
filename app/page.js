@@ -12,6 +12,9 @@ export default function Home() {
 
   const fetchTodos = async () => {
     const response = await axios('/api');
+    toast.success(response.data.msg, {
+      autoClose: 2000,
+    });
     setTodoData(response.data.todos);
   };
 
@@ -31,6 +34,7 @@ export default function Home() {
         params: { mongoId: id },
       }
     );
+
     toast.success(response.data.msg);
     fetchTodos();
   };
@@ -61,14 +65,14 @@ export default function Home() {
     <>
       <ToastContainer theme="dark" />
       <form
-        className="flex items-start flex-col gap-2 w-[80%] max-w-[600px] mt-24 mx-auto"
+        className="flex items-start flex-col gap-2 w-[80%] max-w-[600px] mt-4 mx-auto"
         onSubmit={onSubmitHandler}
       >
         <input
           type="text"
           name="title"
           placeholder="Enter Title"
-          className="px-3 py-2 border-2 w-full bg-slate-100"
+          className="w-full px-3 py-2 border-2 bg-slate-100"
           value={formData.title}
           onChange={onChangeHandler}
         />
@@ -76,21 +80,21 @@ export default function Home() {
           name="description"
           placeholder="Enter Description"
           cols="30"
-          rows="4"
-          className="px-3 py-2 border-2 w-full bg-slate-100"
+          rows="3"
+          className="w-full px-3 py-2 border-2 bg-slate-100"
           value={formData.description}
           onChange={onChangeHandler}
         ></textarea>
         <button
           type="submit"
-          className="bg-green-500 rounded-lg px-10 py-3 text-white"
+          className="px-10 py-3 text-white bg-green-500 rounded-lg"
         >
           Add Todo
         </button>
       </form>
 
-      <div className="relative overflow-x-auto w-[60%] mt-24 mx-auto">
-        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <div className="relative overflow-x-auto w-[80%] max-w-[800px] mt-8 mx-auto">
+        <table className="w-full text-sm text-left text-gray-500 rtl:text-right dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
               <th scope="col" className="px-6 py-3">
